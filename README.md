@@ -1,5 +1,5 @@
 # Pokédex
-Este repositório é referente ao projeto de laboratório - algoritmos III.
+##### Este repositório é referente ao projeto de laboratório - algoritmos III.
 
 <p align="center">
   <img width="460" height="300" src="https://github.com/BrunaDev/Pok-dex/assets/72671246/9aa9e907-0981-42c6-b9d6-e1cc9623442d">
