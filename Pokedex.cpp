@@ -120,7 +120,7 @@ int main() {
     int op = 4;
 
     do {
-        cout << "\n\t\tMenu\n\t1> Cadastrar novo Pokémon\n\t2> Procurar Pokémon\n\t3> Mostrar em ordem alfabética dos tipos\n\t4> Contar quantos Pokémon do tipo\n\t5> Remover Pokémon\n\n\t6> Sair\n";
+        cout << "\n\t\tMenu\n\t1> Cadastrar novo Pokémon\n\t2> Procurar Pokémon\n\t3> Mostrar em ordem alfabética dos tipos\n\t4> Contar quantos Pokémon por tipo\n\t5> Remover Pokémon\n\n\t6> Sair\n";
 
         do {
             cout << "Entre com a opção desejada: ";
