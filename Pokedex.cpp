@@ -1,6 +1,6 @@
 #include<iostream>
 #include <locale.h>
-#include <string>
+#include <cstring>
 #include <cstdlib>
 #include <cmath>
 
@@ -134,14 +134,17 @@ int main() {
             cout << "\n\tCadastro de Pokémon" << endl;
 
             Pokemon novoPokemon;
+            
+            cin.ignore();
             cout << "Informe o nome do Pokémon: ";
-            cin >> novoPokemon.nome;
+            getline(cin, novoPokemon.nome);
             cout << "Informe o tipo (1-Normal; 2-Fogo; 3-Água): ";
             cin >> novoPokemon.tipo;
             cout << "Informe o número de identificação: ";
             cin >> novoPokemon.numero;
+            cin.ignore();
             cout << "Informe a pokébola: ";
-            cin >> novoPokemon.pokebola;
+            getline(cin, novoPokemon.pokebola);
 
             inserir_pokemon(raiz, novoPokemon);
         } else if (op == 2) {
