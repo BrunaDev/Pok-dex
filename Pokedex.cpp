@@ -145,10 +145,6 @@ int Contabiliza_Tipo(treenodeptr raiz, int tipoDesejado)
             cont += Contabiliza_Tipo(raiz->direita, tipoDesejado);
         }
     }
-    if(raiz == NULL && cont == 0)
-	{
-		return -1;
-	}
 
     return cont;
 }
@@ -183,11 +179,11 @@ int main()
 
 	cout << "Bem vindo ao sistema do Pokédex";
 
-	int op = 8;
+	int op = 7;
 
 	do
 	{
-		cout << "\n\t\tMenu\n\t1> Cadastrar novo Pokémon\n\t2> Procurar Pokémon\n\t3> Mostrar em ordem alfabética\n\t4> Contar Pokémons\n\t5> Pokémons por pokebola\n\t6> Remover Pokémon\n\n\t7> Sair\n";
+		cout << "\n\t\tMenu\n\t1> Cadastrar novo Pokémon\n\t2> Procurar Pokémon\n\t3> Mostrar em ordem alfabética\n\t4> Contar Pokémons\n\t5> Pokémons por pokebola\n\t6> Remover Pokémon\n\n\t0> Sair\n";
 
 		do
 		{
@@ -261,7 +257,7 @@ int main()
 
 			int encontrado = Contabiliza_Tipo(raiz, tipoDesejado);
 
-			if (encontrado == -1)
+			if (encontrado == 0)
 				cout << "Não existe esse tipo de pokémon cadastrado!" << endl;
 			else
 			{
@@ -304,8 +300,7 @@ int main()
 				cout << "Pokémon não encontrado para remoção." << endl;
 		}
 
-	}
-	while (op != 7);
+	} while (op != 0);
 
 	cout << "Obrigado por utilizar o sistema do Pokédex!" << endl;
 
