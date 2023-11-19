@@ -251,14 +251,14 @@ int main()
 			int encontrado = Contabiliza_Tipo(raiz, tipoDesejado);
 
 			if (encontrado == -1)
-				cout << "Não existe esse tipo de poquemon cadastrado!" << endl;
+				cout << "Não existe esse tipo de pokémon cadastrado!" << endl;
 			else
 			{
 				if(encontrado > 1)
-					cout << "Tem " << encontrado << " pokemons" << endl;
+					cout << "Tem " << encontrado << " pokémons" << endl;
 				else
 				{
-					cout << "Tem " << encontrado << " pokemon" << endl;
+					cout << "Tem " << encontrado << " pokémon" << endl;
 				}
 			}
 
@@ -269,7 +269,7 @@ int main()
 			cout << "\n\tRemover Pokémon" << endl;
 
 			string nomeRemover;
-			cout << "Informe o nome do Pokémon a ser removido: ";
+			cout << "Informe o nome do pokémon a ser removido: ";
 			cin >> nomeRemover;
 
 			// Tenta remover o Pokémon e exibe uma mensagem adequada
