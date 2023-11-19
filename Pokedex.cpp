@@ -164,6 +164,17 @@ void mostrarPorTipo(treenodeptr raiz, int tipoDesejado) {
     }
 }
 
+// Implementação da função para mostrar por pokebola
+void mostrarPorPokebola(treenodeptr raiz, string pokebolaDesejada) {
+    if (raiz != NULL) {
+        mostrarPorPokebola(raiz->esquerda, pokebolaDesejada);
+        if (raiz->info.pokebola == pokebolaDesejada) {
+            cout << "Nome: " << raiz->info.nome << ", Tipo: " << atributos_base[raiz->info.tipo - 1] << ", Numero: " << raiz->info.numero << ", Pokebola: " << raiz->info.pokebola << endl;
+        }
+        mostrarPorPokebola(raiz->direita, pokebolaDesejada);
+    }
+}
+
 int main()
 {
 	setlocale(LC_ALL, "");
@@ -172,11 +183,11 @@ int main()
 
 	cout << "Bem vindo ao sistema do Pokédex";
 
-	int op = 4;
+	int op = 8;
 
 	do
 	{
-		cout << "\n\t\tMenu\n\t1> Cadastrar novo Pokémon\n\t2> Procurar Pokémon\n\t3> Mostrar em ordem alfabética dos tipos\n\t4> Contar quantos Pokémon por tipo\n\t5> Remover Pokémon\n\n\t6> Sair\n";
+		cout << "\n\t\tMenu\n\t1> Cadastrar novo Pokémon\n\t2> Procurar Pokémon\n\t3> Mostrar em ordem alfabética\n\t4> Contar Pokémons\n\t5> Pokémons por pokebola\n\t6> Remover Pokémon\n\n\t7> Sair\n";
 
 		do
 		{
@@ -265,6 +276,18 @@ int main()
 		}
 		else if (op == 5)
 		{
+			//Separar por pokebola
+            		cout << "\n\tPokémons por pokebola" << endl;
+
+    			string pokebolaDesejada;
+    			cout << "Informe a pokebola desejada: ";
+    			cin >> pokebolaDesejada;
+
+    			cout << "\nPokémons na pokebola " << pokebolaDesejada << ":" << endl;
+    			mostrarPorPokebola(raiz, pokebolaDesejada);
+		}
+		else if (op == 6)
+		{
 			// Remover Pokémon
 			cout << "\n\tRemover Pokémon" << endl;
 
@@ -282,7 +305,7 @@ int main()
 		}
 
 	}
-	while (op != 6);
+	while (op != 7);
 
 	cout << "Obrigado por utilizar o sistema do Pokédex!" << endl;
 
