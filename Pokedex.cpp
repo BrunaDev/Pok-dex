@@ -189,10 +189,10 @@ int main()
 		{
 			cout << "Entre com a opção desejada: ";
 			cin >> op;
-			if (op > 6 || op < 1)
+			if (op != 0)
 				cout << "Opção inválida!" << endl;
 		}
-		while (op > 6 || op < 1);
+		while (op != 0);
 
 		if (op == 1)
 		{
