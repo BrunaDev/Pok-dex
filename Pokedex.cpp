@@ -69,32 +69,32 @@ treenodeptr tMenor(treenodeptr &raiz)
 		return tMenor(raiz->esquerda);
 }
 
-// Remover Pokémon da árvore
-int tRemove(treenodeptr &raiz, string nome)
+// Remover Pokémon da árvore por pokebola
+int tRemovePorPokebola(treenodeptr &raiz, string pokebola)
 {
-	treenodeptr p;
-	if (raiz == NULL)
-		return 1; // Retorna 1 se a árvore estiver vazia
+    treenodeptr p;
+    if (raiz == NULL)
+        return 1; // Retorna 1 se a árvore estiver vazia
 
-	if (nome == raiz->info.nome)
-	{
-		p = raiz;
-		if (raiz->esquerda == NULL)
-			raiz = raiz->direita;
-		else if (raiz->direita == NULL)
-			raiz = raiz->esquerda;
-		else
-		{
-			p = tMenor(raiz->direita);
-			raiz->info = p->info;
-		}
-		delete p;
-		return 0; // Retorna 0 indicando que a remoção foi bem-sucedida
-	}
-	else if (nome < raiz->info.nome)
-		return tRemove(raiz->esquerda, nome);
-	else
-		return tRemove(raiz->direita, nome);
+    if (pokebola == raiz->info.pokebola)
+    {
+        p = raiz;
+        if (raiz->esquerda == NULL)
+            raiz = raiz->direita;
+        else if (raiz->direita == NULL)
+            raiz = raiz->esquerda;
+        else
+        {
+            p = tMenor(raiz->direita);
+            raiz->info = p->info;
+        }
+        delete p;
+        return 0; // Retorna 0 indicando que a remoção foi bem-sucedida
+    }
+    else if (pokebola < raiz->info.pokebola)
+        return tRemovePorPokebola(raiz->esquerda, pokebola);
+    else
+        return tRemovePorPokebola(raiz->direita, pokebola);
 }
 
 // Destruir a árvore liberando a memória
@@ -189,10 +189,10 @@ int main()
 		{
 			cout << "Entre com a opção desejada: ";
 			cin >> op;
-			if (op != 0)
+			if (op < 0 || op > 6)
 				cout << "Opção inválida!" << endl;
 		}
-		while (op != 0);
+		while (op < 0 || op > 6);
 
 		if (op == 1)
 		{
@@ -284,22 +284,21 @@ int main()
 		}
 		else if (op == 6)
 		{
-			// Remover Pokémon
-			cout << "\n\tRemover Pokémon" << endl;
+			// Remover Pokémon por pokebola
+    		cout << "\n\tRemover Pokémon por pokebola" << endl;
 
-			string nomeRemover;
-			cout << "Informe o nome do pokémon a ser removido: ";
-			cin >> nomeRemover;
+    		string pokebolaRemover;
+    		cout << "Informe a pokebola do pokémon a ser removido: ";
+    		cin >> pokebolaRemover;
 
-			// Tenta remover o Pokémon e exibe uma mensagem adequada
-			int resultadoRemover = tRemove(raiz, nomeRemover);
+    		// Tenta remover o Pokémon e exibe uma mensagem adequada
+    		int resultadoRemover = tRemovePorPokebola(raiz, pokebolaRemover);
 
-			if (resultadoRemover == 0)
-				cout << "Pokémon removido com sucesso!" << endl;
-			else
-				cout << "Pokémon não encontrado para remoção." << endl;
+    		if (resultadoRemover == 0)
+        		cout << "Pokémon removido com sucesso!" << endl;
+    		else
+        		cout << "Pokémon não encontrado para remoção." << endl;
 		}
-
 	} while (op != 0);
 
 	cout << "Obrigado por utilizar o sistema do Pokédex!" << endl;
