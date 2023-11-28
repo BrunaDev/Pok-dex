@@ -1,3 +1,8 @@
+//Integrantes:                           TEMA 01 - POKÉDEX
+//Bruna Magalhães
+// Lilyan Aparecida
+// Kawan dos Reis
+
 #include<iostream>
 #include <locale.h>
 #include <cstring>
