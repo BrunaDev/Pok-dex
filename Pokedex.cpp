@@ -34,6 +34,38 @@ struct treenode
 typedef treenode* treenodeptr;
 
 // Funções
+// Função para percurso em ordem
+void percursoEmOrdem(treenodeptr raiz)
+{
+    if (raiz != NULL)
+    {
+        percursoEmOrdem(raiz->esquerda);
+        cout << raiz->info.numero << " ";
+        percursoEmOrdem(raiz->direita);
+    }
+}
+
+// Função para percurso pós-ordem
+void percursoPosOrdem(treenodeptr raiz)
+{
+    if (raiz != NULL)
+    {
+        percursoPosOrdem(raiz->esquerda);
+        percursoPosOrdem(raiz->direita);
+        cout << raiz->info.numero << " ";
+    }
+}
+
+// Função para percurso pré-ordem
+void percursoPreOrdem(treenodeptr raiz)
+{
+    if (raiz != NULL)
+    {
+        cout << raiz->info.numero << " ";
+        percursoPreOrdem(raiz->esquerda);
+        percursoPreOrdem(raiz->direita);
+    }
+}
 
 // Inserir Pokémon na árvore binária de busca
 void inserir_pokemon(treenodeptr &raiz, Pokemon p)
@@ -200,7 +232,7 @@ int main()
 
 	do
 	{
-		cout << "\n\t\tMenu\n\t1> Cadastrar novo Pokémon\n\t2> Procurar Pokémon\n\t3> Mostrar em ordem alfabética\n\t4> Contar Pokémons\n\t5> Pokémons por pokebola\n\t6> Remover Pokémon\n\n\t0> Sair\n";
+		cout << "\n\t\tMenu\n\t1> Cadastrar novo Pokémon\n\t2> Procurar Pokémon\n\t3> Mostrar em ordem alfabética\n\t4> Contar Pokémons\n\t5> Pokémons por pokebola\n\t6> Remover Pokémon\n\t7> Percurso mais rápido\n\n\t0> Sair\n";
 
 		do
 		{
@@ -315,6 +347,38 @@ int main()
 				cout << "Pokémon removido com sucesso!" << endl;
 			else
 				cout << "Pokémon não encontrado para remoção." << endl;
+		}
+		else if (op == 7)
+		{
+    		// Percurso em ordem, pós-ordem ou pré-ordem
+    		cout << "\n\tPercurso da Árvore\n\t1> Em Ordem\n\t2> Pós-Ordem\n\t3> Pré-Ordem\n\t0> Sair\n";
+    		int opPercurso;
+    		do
+    		{
+        		cout << "Escolha o tipo de percurso: ";
+        		cin >> opPercurso;
+        		if (opPercurso < 0 || opPercurso > 3)
+            		cout << "Opção inválida!" << endl;
+    		} while (opPercurso < 0 || opPercurso > 3);
+
+    		switch (opPercurso)
+    		{
+    			case 1:
+        		cout << "Percurso Em Ordem: ";
+        		percursoEmOrdem(raiz);
+        		break;
+    			case 2:
+        		cout << "Percurso Pós-Ordem: ";
+        		percursoPosOrdem(raiz);
+        		break;
+    			case 3:
+        		cout << "Percurso Pré-Ordem: ";
+        		percursoPreOrdem(raiz);
+        		break;
+    		default:
+        	break;
+    		}
+    		cout << endl;
 		}
 	}
 	while (op != 0);
