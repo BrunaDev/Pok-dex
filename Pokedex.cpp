@@ -8,6 +8,8 @@
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
+#include <vector>
+#include <climits>
 
 using namespace std;
 
@@ -29,6 +31,14 @@ struct treenode
 	Pokemon info;
 	treenode* esquerda;
 	treenode* direita;
+};
+
+// Estrutura para armazenar informações sobre o caminho mais curto
+struct CaminhoMaisCurto
+{
+    vector<int> caminho;
+    int comprimento;
+    string tipoPercurso; // Adicionado para armazenar o tipo de percurso
 };
 
 typedef treenode* treenodeptr;
@@ -65,6 +75,76 @@ void percursoPreOrdem(treenodeptr raiz)
         percursoPreOrdem(raiz->esquerda);
         percursoPreOrdem(raiz->direita);
     }
+}
+
+// Função auxiliar para encontrar o caminho mais curto até um Pokémon
+CaminhoMaisCurto encontrarCaminhoMaisCurtoAux(treenodeptr raiz, int numeroPokemon, string tipoPercursoAtual)
+{
+    CaminhoMaisCurto caminhoMaisCurtoAtual, caminhoMaisCurtoEsquerda, caminhoMaisCurtoDireita;
+
+    if (raiz == NULL)
+    {
+        // Se chegarmos a uma folha da árvore, retornamos um caminho infinito
+        caminhoMaisCurtoAtual.caminho.push_back(-1);
+        caminhoMaisCurtoAtual.comprimento = INT_MAX;
+        caminhoMaisCurtoAtual.tipoPercurso = tipoPercursoAtual;
+        return caminhoMaisCurtoAtual;
+    }
+
+    if (tipoPercursoAtual == "Em Ordem")
+    {
+        caminhoMaisCurtoEsquerda = encontrarCaminhoMaisCurtoAux(raiz->esquerda, numeroPokemon, "Em Ordem");
+        caminhoMaisCurtoDireita = encontrarCaminhoMaisCurtoAux(raiz->direita, numeroPokemon, "Em Ordem");
+    }
+    else if (tipoPercursoAtual == "Pós Ordem")
+    {
+        caminhoMaisCurtoEsquerda = encontrarCaminhoMaisCurtoAux(raiz->esquerda, numeroPokemon, "Pós Ordem");
+        caminhoMaisCurtoDireita = encontrarCaminhoMaisCurtoAux(raiz->direita, numeroPokemon, "Pós Ordem");
+    }
+    else if (tipoPercursoAtual == "Pré Ordem")
+    {
+        caminhoMaisCurtoEsquerda = encontrarCaminhoMaisCurtoAux(raiz->esquerda, numeroPokemon, "Pré Ordem");
+        caminhoMaisCurtoDireita = encontrarCaminhoMaisCurtoAux(raiz->direita, numeroPokemon, "Pré Ordem");
+    }
+
+    // Escolhemos o caminho mais curto entre as subárvores esquerda e direita
+    if (caminhoMaisCurtoEsquerda.comprimento < caminhoMaisCurtoDireita.comprimento)
+        caminhoMaisCurtoAtual = caminhoMaisCurtoEsquerda;
+    else
+        caminhoMaisCurtoAtual = caminhoMaisCurtoDireita;
+
+    // Verificamos se o caminho atual até a raiz é mais curto
+    caminhoMaisCurtoAtual.caminho.insert(caminhoMaisCurtoAtual.caminho.begin(), raiz->info.numero);
+
+    // Atualizamos o comprimento do caminho atual
+    caminhoMaisCurtoAtual.comprimento = caminhoMaisCurtoAtual.caminho.size();
+    caminhoMaisCurtoAtual.tipoPercurso = tipoPercursoAtual;
+
+    return caminhoMaisCurtoAtual;
+}
+
+// Função para encontrar o caminho mais curto até um Pokémon na árvore
+CaminhoMaisCurto encontrarCaminhoMaisCurto(treenodeptr raiz, int numeroPokemon)
+{
+    // Inicializamos com um caminho infinito
+    CaminhoMaisCurto caminhoMaisCurtoFinal;
+    caminhoMaisCurtoFinal.caminho.push_back(-1);
+    caminhoMaisCurtoFinal.comprimento = INT_MAX;
+
+    // Encontramos o caminho mais curto para cada tipo de percurso
+    CaminhoMaisCurto caminhoMaisCurtoEmOrdem = encontrarCaminhoMaisCurtoAux(raiz, numeroPokemon, "Em Ordem");
+    CaminhoMaisCurto caminhoMaisCurtoPosOrdem = encontrarCaminhoMaisCurtoAux(raiz, numeroPokemon, "Pós Ordem");
+    CaminhoMaisCurto caminhoMaisCurtoPreOrdem = encontrarCaminhoMaisCurtoAux(raiz, numeroPokemon, "Pré Ordem");
+
+    // Comparamos os caminhos e escolhemos o mais curto
+    if (caminhoMaisCurtoEmOrdem.comprimento < caminhoMaisCurtoFinal.comprimento)
+        caminhoMaisCurtoFinal = caminhoMaisCurtoEmOrdem;
+    if (caminhoMaisCurtoPosOrdem.comprimento < caminhoMaisCurtoFinal.comprimento)
+        caminhoMaisCurtoFinal = caminhoMaisCurtoPosOrdem;
+    if (caminhoMaisCurtoPreOrdem.comprimento < caminhoMaisCurtoFinal.comprimento)
+        caminhoMaisCurtoFinal = caminhoMaisCurtoPreOrdem;
+
+    return caminhoMaisCurtoFinal;
 }
 
 // Inserir Pokémon na árvore binária de busca
@@ -228,7 +308,7 @@ int main()
 
 	cout << "Bem vindo ao sistema do Pokédex";
 
-	int op = 7;
+	int op = 8;
 
 	do
 	{
@@ -238,10 +318,10 @@ int main()
 		{
 			cout << "Entre com a opção desejada: ";
 			cin >> op;
-			if (op < 0 || op > 6)
+			if (op < 0 || op > 7)
 				cout << "Opção inválida!" << endl;
 		}
-		while (op < 0 || op > 6);
+		while (op < 0 || op > 7);
 
 		if (op == 1)
 		{
@@ -350,38 +430,32 @@ int main()
 		}
 		else if (op == 7)
 		{
-    		// Percurso em ordem, pós-ordem ou pré-ordem
-    		cout << "\n\tPercurso da Árvore\n\t1> Em Ordem\n\t2> Pós-Ordem\n\t3> Pré-Ordem\n\t0> Sair\n";
-    		int opPercurso;
-    		do
-    		{
-        		cout << "Escolha o tipo de percurso: ";
-        		cin >> opPercurso;
-        		if (opPercurso < 0 || opPercurso > 3)
-            		cout << "Opção inválida!" << endl;
-    		} while (opPercurso < 0 || opPercurso > 3);
+    		// Encontrar caminho mais curto até um Pokémon
+    cout << "\n\tEncontrar Caminho Mais Curto até um Pokémon\n";
 
-    		switch (opPercurso)
-    		{
-    			case 1:
-        		cout << "Percurso Em Ordem: ";
-        		percursoEmOrdem(raiz);
-        		break;
-    			case 2:
-        		cout << "Percurso Pós-Ordem: ";
-        		percursoPosOrdem(raiz);
-        		break;
-    			case 3:
-        		cout << "Percurso Pré-Ordem: ";
-        		percursoPreOrdem(raiz);
-        		break;
-    		default:
-        	break;
-    		}
-    		cout << endl;
+    int numeroPokemon;
+    cout << "Informe o número do Pokémon desejado: ";
+    cin >> numeroPokemon;
+
+    CaminhoMaisCurto caminhoMaisCurto = encontrarCaminhoMaisCurto(raiz, numeroPokemon);
+
+    if (caminhoMaisCurto.comprimento != INT_MAX)
+    {
+        cout << "Caminho Mais Curto Encontrado (" << caminhoMaisCurto.tipoPercurso << "): ";
+        for (int i = 0; i < caminhoMaisCurto.caminho.size(); ++i)
+        {
+            cout << caminhoMaisCurto.caminho[i];
+            if (i < caminhoMaisCurto.caminho.size() - 1)
+                cout << " -> ";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << "Pokémon não encontrado na árvore." << endl;
+    }
 		}
-	}
-	while (op != 0);
+	}while (op != 0);
 
 	cout << "Obrigado por utilizar o sistema do Pokédex!" << endl;
 
