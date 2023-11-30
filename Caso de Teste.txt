@@ -11,6 +11,7 @@ Bem vindo ao sistema do Pokédex
         4> Contar Pokémons
         5> Pokémons por pokebola
         6> Remover Pokémon
+        7> Percurso mais rápido
 
         0> Sair
 Entre com a opção desejada: 1
@@ -18,8 +19,8 @@ Entre com a opção desejada: 1
         Cadastro de Pokémon
 Informe o nome do Pokémon: Charmander
 Informe o tipo (1-Normal; 2-Fogo; 3-Água): 2
-Informe o número de identificação: 1
-Informe a pokébola: PokeBall
+Informe o número de identificação: 11
+Informe a pokébola: Pokeball
 
                 Menu
         1> Cadastrar novo Pokémon
@@ -28,15 +29,16 @@ Informe a pokébola: PokeBall
         4> Contar Pokémons
         5> Pokémons por pokebola
         6> Remover Pokémon
+        7> Percurso mais rápido
 
         0> Sair
 Entre com a opção desejada: 1
 
         Cadastro de Pokémon
-Informe o nome do Pokémon: Eevee
+Informe o nome do Pokémon: Pikachu
 Informe o tipo (1-Normal; 2-Fogo; 3-Água): 1
-Informe o número de identificação: 2
-Informe a pokébola: GreatBall
+Informe o número de identificação: 12
+Informe a pokébola: Ultraball
 
                 Menu
         1> Cadastrar novo Pokémon
@@ -45,6 +47,7 @@ Informe a pokébola: GreatBall
         4> Contar Pokémons
         5> Pokémons por pokebola
         6> Remover Pokémon
+        7> Percurso mais rápido
 
         0> Sair
 Entre com a opção desejada: 1
@@ -52,8 +55,8 @@ Entre com a opção desejada: 1
         Cadastro de Pokémon
 Informe o nome do Pokémon: Squirtle
 Informe o tipo (1-Normal; 2-Fogo; 3-Água): 3
-Informe o número de identificação: 3
-Informe a pokébola: PokeBall
+Informe o número de identificação: 13
+Informe a pokébola: Pokeball
 
                 Menu
         1> Cadastrar novo Pokémon
@@ -62,12 +65,31 @@ Informe a pokébola: PokeBall
         4> Contar Pokémons
         5> Pokémons por pokebola
         6> Remover Pokémon
+        7> Percurso mais rápido
+
+        0> Sair
+Entre com a opção desejada: 1
+
+        Cadastro de Pokémon
+Informe o nome do Pokémon: Eevee
+Informe o tipo (1-Normal; 2-Fogo; 3-Água): 1
+Informe o número de identificação: 14
+Informe a pokébola: Greatball
+
+                Menu
+        1> Cadastrar novo Pokémon
+        2> Procurar Pokémon
+        3> Mostrar em ordem alfabética
+        4> Contar Pokémons
+        5> Pokémons por pokebola
+        6> Remover Pokémon
+        7> Percurso mais rápido
 
         0> Sair
 Entre com a opção desejada: 2
 
         Procurar Pokémon (por nome)
-Informe o nome do Pokémon: Eevee
+Informe o nome do Pokémon: Pikachu
 Pokémon encontrado!
 
                 Menu
@@ -77,97 +99,13 @@ Pokémon encontrado!
         4> Contar Pokémons
         5> Pokémons por pokebola
         6> Remover Pokémon
-
-        0> Sair
-Entre com a opção desejada: 3
-
-        Ordenar e imprimir a estrutura por ordem alfabética dos tipos
-
-Pokémons do tipo Normal:
-Nome: Eevee, Tipo: Normal, Numero: 2, Pokebola: GreatBall
-
-Pokémons do tipo Fogo:
-Nome: Charmander, Tipo: Fogo, Numero: 1, Pokebola: PokeBall
-
-Pokémons do tipo Água:
-Nome: Squirtle, Tipo: Água, Numero: 3, Pokebola: PokeBall
-
-                Menu
-        1> Cadastrar novo Pokémon
-        2> Procurar Pokémon
-        3> Mostrar em ordem alfabética
-        4> Contar Pokémons
-        5> Pokémons por pokebola
-        6> Remover Pokémon
-
-        0> Sair
-Entre com a opção desejada: 4
-
-        Contar quantos Pokémon tem de determinado tipo
-Tipo desejado (1-Normal; 2-Fogo; 3-Água): 2
-Tem 1 pokémon
-
-                Menu
-        1> Cadastrar novo Pokémon
-        2> Procurar Pokémon
-        3> Mostrar em ordem alfabética
-        4> Contar Pokémons
-        5> Pokémons por pokebola
-        6> Remover Pokémon
-
-        0> Sair
-Entre com a opção desejada: 5
-
-        Pokémons por pokebola
-Informe a pokebola desejada: PokeBall
-
-Pokémons na pokebola PokeBall:
-Nome: Charmander, Tipo: Fogo, Numero: 1, Pokebola: PokeBall
-Nome: Squirtle, Tipo: Água, Numero: 3, Pokebola: PokeBall
-
-                Menu
-        1> Cadastrar novo Pokémon
-        2> Procurar Pokémon
-        3> Mostrar em ordem alfabética
-        4> Contar Pokémons
-        5> Pokémons por pokebola
-        6> Remover Pokémon
-
-        0> Sair
-Entre com a opção desejada: 6
-
-        Remover Pokémon
-Informe o nome do pokémon a ser removido: Evee
-Pokémon não encontrado para remoção.
-
-                Menu
-        1> Cadastrar novo Pokémon
-        2> Procurar Pokémon
-        3> Mostrar em ordem alfabética
-        4> Contar Pokémons
-        5> Pokémons por pokebola
-        6> Remover Pokémon
-
-        0> Sair
-Entre com a opção desejada: 6
-
-        Remover Pokémon
-Informe o nome do pokémon a ser removido: Eevee
-Pokémon removido com sucesso!
-
-                Menu
-        1> Cadastrar novo Pokémon
-        2> Procurar Pokémon
-        3> Mostrar em ordem alfabética
-        4> Contar Pokémons
-        5> Pokémons por pokebola
-        6> Remover Pokémon
+        7> Percurso mais rápido
 
         0> Sair
 Entre com a opção desejada: 2
 
         Procurar Pokémon (por nome)
-Informe o nome do Pokémon: Eevee
+Informe o nome do Pokémon: Pigmeu
 Pokémon não encontrado!
 
                 Menu
@@ -177,6 +115,132 @@ Pokémon não encontrado!
         4> Contar Pokémons
         5> Pokémons por pokebola
         6> Remover Pokémon
+        7> Percurso mais rápido
+
+        0> Sair
+Entre com a opção desejada: 3
+
+        Ordenar e imprimir a estrutura por ordem alfabética dos tipos
+
+Pokémons do tipo Água:
+Nome: Squirtle, Tipo: Água, Numero: 13, Pokebola: Pokeball
+
+Pokémons do tipo Fogo:
+Nome: Charmander, Tipo: Fogo, Numero: 11, Pokebola: Pokeball
+
+Pokémons do tipo Normal:
+Nome: Eevee, Tipo: Normal, Numero: 14, Pokebola: Greatball
+Nome: Pikachu, Tipo: Normal, Numero: 12, Pokebola: Ultraball
+
+                Menu
+        1> Cadastrar novo Pokémon
+        2> Procurar Pokémon
+        3> Mostrar em ordem alfabética
+        4> Contar Pokémons
+        5> Pokémons por pokebola
+        6> Remover Pokémon
+        7> Percurso mais rápido
+
+        0> Sair
+Entre com a opção desejada: 4
+
+        Contar quantos Pokémon tem de determinado tipo
+Tipo desejado (1-Normal; 2-Fogo; 3-Água): 3
+Tem 1 pokémon
+
+                Menu
+        1> Cadastrar novo Pokémon
+        2> Procurar Pokémon
+        3> Mostrar em ordem alfabética
+        4> Contar Pokémons
+        5> Pokémons por pokebola
+        6> Remover Pokémon
+        7> Percurso mais rápido
+
+        0> Sair
+Entre com a opção desejada: 5
+
+        Pokémons por pokebola
+Informe a pokebola desejada: Pokeball
+
+Pokémons na pokebola Pokeball:
+Nome: Charmander, Tipo: Fogo, Numero: 11, Pokebola: Pokeball
+Nome: Squirtle, Tipo: Água, Numero: 13, Pokebola: Pokeball
+
+                Menu
+        1> Cadastrar novo Pokémon
+        2> Procurar Pokémon
+        3> Mostrar em ordem alfabética
+        4> Contar Pokémons
+        5> Pokémons por pokebola
+        6> Remover Pokémon
+        7> Percurso mais rápido
+
+        0> Sair
+Entre com a opção desejada: 5
+
+        Pokémons por pokebola
+Informe a pokebola desejada: Ultraball
+
+Pokémons na pokebola Ultraball:
+Nome: Pikachu, Tipo: Normal, Numero: 12, Pokebola: Ultraball
+
+                Menu
+        1> Cadastrar novo Pokémon
+        2> Procurar Pokémon
+        3> Mostrar em ordem alfabética
+        4> Contar Pokémons
+        5> Pokémons por pokebola
+        6> Remover Pokémon
+        7> Percurso mais rápido
+
+        0> Sair
+Entre com a opção desejada: 6
+
+        Remover Pokémon por pokebola
+Informe a pokebola do pokémon a ser removido: Ultraball
+Pokémon removido com sucesso!
+
+                Menu
+        1> Cadastrar novo Pokémon
+        2> Procurar Pokémon
+        3> Mostrar em ordem alfabética
+        4> Contar Pokémons
+        5> Pokémons por pokebola
+        6> Remover Pokémon
+        7> Percurso mais rápido
+
+        0> Sair
+Entre com a opção desejada: 2
+
+        Procurar Pokémon (por nome)
+Informe o nome do Pokémon: Pikachu
+Pokémon não encontrado!
+
+                Menu
+        1> Cadastrar novo Pokémon
+        2> Procurar Pokémon
+        3> Mostrar em ordem alfabética
+        4> Contar Pokémons
+        5> Pokémons por pokebola
+        6> Remover Pokémon
+        7> Percurso mais rápido
+
+        0> Sair
+Entre com a opção desejada: 7
+
+        Encontrar Caminho Mais Curto até um Pokémon
+Informe o número do Pokémon desejado: 11
+Caminho Mais Curto Encontrado (Em Ordem): 11 -> -1
+
+                Menu
+        1> Cadastrar novo Pokémon
+        2> Procurar Pokémon
+        3> Mostrar em ordem alfabética
+        4> Contar Pokémons
+        5> Pokémons por pokebola
+        6> Remover Pokémon
+        7> Percurso mais rápido
 
         0> Sair
 Entre com a opção desejada: 0
