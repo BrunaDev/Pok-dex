@@ -15,7 +15,8 @@ using namespace std;
 string atributos_base[3] = {"Normal", "Fogo", "Água"};
 
 // Definindo a estrutura do Pokémon
-typedef struct pokemon{
+typedef struct pokemon
+{
 	int numero;
 	string nome;
 	int tipo; // Deve ser uma das opções em atributos_base
@@ -23,7 +24,8 @@ typedef struct pokemon{
 } Pokemon;
 
 // Definindo a estrutura do nó da árvore binária
-struct treenode{
+struct treenode
+{
 	Pokemon info;
 	treenode* esquerda;
 	treenode* direita;
@@ -77,29 +79,29 @@ treenodeptr tMenor(treenodeptr &raiz)
 // Remover Pokémon da árvore por pokebola
 int tRemovePorPokebola(treenodeptr &raiz, string pokebola)
 {
-    treenodeptr p;
-    if (raiz == NULL)
-        return 1; // Retorna 1 se a árvore estiver vazia
+	treenodeptr p;
+	if (raiz == NULL)
+		return 1; // Retorna 1 se a árvore estiver vazia
 
-    if (pokebola == raiz->info.pokebola)
-    {
-        p = raiz;
-        if (raiz->esquerda == NULL)
-            raiz = raiz->direita;
-        else if (raiz->direita == NULL)
-            raiz = raiz->esquerda;
-        else
-        {
-            p = tMenor(raiz->direita);
-            raiz->info = p->info;
-        }
-        delete p;
-        return 0; // Retorna 0 indicando que a remoção foi bem-sucedida
-    }
-    else if (pokebola < raiz->info.pokebola)
-        return tRemovePorPokebola(raiz->esquerda, pokebola);
-    else
-        return tRemovePorPokebola(raiz->direita, pokebola);
+	if (pokebola == raiz->info.pokebola)
+	{
+		p = raiz;
+		if (raiz->esquerda == NULL)
+			raiz = raiz->direita;
+		else if (raiz->direita == NULL)
+			raiz = raiz->esquerda;
+		else
+		{
+			p = tMenor(raiz->direita);
+			raiz->info = p->info;
+		}
+		delete p;
+		return 0; // Retorna 0 indicando que a remoção foi bem-sucedida
+	}
+	else if (pokebola < raiz->info.pokebola)
+		return tRemovePorPokebola(raiz->esquerda, pokebola);
+	else
+		return tRemovePorPokebola(raiz->direita, pokebola);
 }
 
 // Destruir a árvore liberando a memória
@@ -130,50 +132,60 @@ treenodeptr tPesq(treenodeptr &raiz, string nome)
 // Procurar um Pokémon na árvore por nome
 int Contabiliza_Tipo(treenodeptr raiz, int tipoDesejado)
 {
-    int cont = 0;
+	int cont = 0;
 
-    if (raiz != NULL)
-    {
-       
-        if (tipoDesejado < raiz->info.tipo)
-        {
-            cont += Contabiliza_Tipo(raiz->esquerda, tipoDesejado);
-        }
-        else if (tipoDesejado > raiz->info.tipo)
-        {
-            cont += Contabiliza_Tipo(raiz->direita, tipoDesejado);
-        }
-        else
-        {
-            cont++;
-            cont += Contabiliza_Tipo(raiz->esquerda, tipoDesejado);
-            cont += Contabiliza_Tipo(raiz->direita, tipoDesejado);
-        }
-    }
+	if (raiz != NULL)
+	{
 
-    return cont;
+		if (tipoDesejado < raiz->info.tipo)
+		{
+			cont += Contabiliza_Tipo(raiz->esquerda, tipoDesejado);
+		}
+		else if (tipoDesejado > raiz->info.tipo)
+		{
+			cont += Contabiliza_Tipo(raiz->direita, tipoDesejado);
+		}
+		else
+		{
+			cont++;
+			cont += Contabiliza_Tipo(raiz->esquerda, tipoDesejado);
+			cont += Contabiliza_Tipo(raiz->direita, tipoDesejado);
+		}
+	}
+
+	return cont;
 }
 
 // Implementação da função para mostrar em ordem alfabética dos tipos
-void mostrarPorTipo(treenodeptr raiz, int tipoDesejado) {
-    if (raiz != NULL) {
-        mostrarPorTipo(raiz->esquerda, tipoDesejado);
-        if (raiz->info.tipo == tipoDesejado) {
-            cout << "Nome: " << raiz->info.nome << ", Tipo: " << atributos_base[raiz->info.tipo - 1] << ", Numero: " << raiz->info.numero << ", Pokebola: " << raiz->info.pokebola << endl;
-        }
-        mostrarPorTipo(raiz->direita, tipoDesejado);
-    }
+void mostrarPorTipo(treenodeptr raiz, int tipoDesejado)
+{
+	if (raiz != NULL)
+	{
+		mostrarPorTipo(raiz->esquerda, tipoDesejado);
+
+		// Exibe os Pokémon apenas se forem do tipo desejado
+		if (raiz->info.tipo == tipoDesejado)
+		{
+			cout << "Nome: " << raiz->info.nome << ", Tipo: " << atributos_base[tipoDesejado - 1] << ", Numero: " << raiz->info.numero << ", Pokebola: " << raiz->info.pokebola << endl;
+		}
+
+		mostrarPorTipo(raiz->direita, tipoDesejado);
+	}
 }
 
+
 // Implementação da função para mostrar por pokebola
-void mostrarPorPokebola(treenodeptr raiz, string pokebolaDesejada) {
-    if (raiz != NULL) {
-        mostrarPorPokebola(raiz->esquerda, pokebolaDesejada);
-        if (raiz->info.pokebola == pokebolaDesejada) {
-            cout << "Nome: " << raiz->info.nome << ", Tipo: " << atributos_base[raiz->info.tipo - 1] << ", Numero: " << raiz->info.numero << ", Pokebola: " << raiz->info.pokebola << endl;
-        }
-        mostrarPorPokebola(raiz->direita, pokebolaDesejada);
-    }
+void mostrarPorPokebola(treenodeptr raiz, string pokebolaDesejada)
+{
+	if (raiz != NULL)
+	{
+		mostrarPorPokebola(raiz->esquerda, pokebolaDesejada);
+		if (raiz->info.pokebola == pokebolaDesejada)
+		{
+			cout << "Nome: " << raiz->info.nome << ", Tipo: " << atributos_base[raiz->info.tipo - 1] << ", Numero: " << raiz->info.numero << ", Pokebola: " << raiz->info.pokebola << endl;
+		}
+		mostrarPorPokebola(raiz->direita, pokebolaDesejada);
+	}
 }
 
 int main()
@@ -243,13 +255,13 @@ int main()
 			// Ordenar e imprimir a estrutura por ordem alfabética dos tipos
 			cout << "\n\tOrdenar e imprimir a estrutura por ordem alfabética dos tipos" << endl;
 
-			for (int i = 1; i <= 3; ++i)   // 3 tipos de Pokémon
+
+
+			for (int i = 3; i >= 1; --i)  
 			{
 				cout << "\nPokémons do tipo " << atributos_base[i - 1] << ":" << endl;
 				mostrarPorTipo(raiz, i);
 			}
-
-			// Implementar ordenação e impressão por ordem alfabética dos tipos
 		}
 		else if (op == 4)
 		{
@@ -278,33 +290,34 @@ int main()
 		else if (op == 5)
 		{
 			//Separar por pokebola
-            		cout << "\n\tPokémons por pokebola" << endl;
+			cout << "\n\tPokémons por pokebola" << endl;
 
-    			string pokebolaDesejada;
-    			cout << "Informe a pokebola desejada: ";
-    			cin >> pokebolaDesejada;
+			string pokebolaDesejada;
+			cout << "Informe a pokebola desejada: ";
+			cin >> pokebolaDesejada;
 
-    			cout << "\nPokémons na pokebola " << pokebolaDesejada << ":" << endl;
-    			mostrarPorPokebola(raiz, pokebolaDesejada);
+			cout << "\nPokémons na pokebola " << pokebolaDesejada << ":" << endl;
+			mostrarPorPokebola(raiz, pokebolaDesejada);
 		}
 		else if (op == 6)
 		{
 			// Remover Pokémon por pokebola
-    		cout << "\n\tRemover Pokémon por pokebola" << endl;
+			cout << "\n\tRemover Pokémon por pokebola" << endl;
 
-    		string pokebolaRemover;
-    		cout << "Informe a pokebola do pokémon a ser removido: ";
-    		cin >> pokebolaRemover;
+			string pokebolaRemover;
+			cout << "Informe a pokebola do pokémon a ser removido: ";
+			cin >> pokebolaRemover;
 
-    		// Tenta remover o Pokémon e exibe uma mensagem adequada
-    		int resultadoRemover = tRemovePorPokebola(raiz, pokebolaRemover);
+			// Tenta remover o Pokémon e exibe uma mensagem adequada
+			int resultadoRemover = tRemovePorPokebola(raiz, pokebolaRemover);
 
-    		if (resultadoRemover == 0)
-        		cout << "Pokémon removido com sucesso!" << endl;
-    		else
-        		cout << "Pokémon não encontrado para remoção." << endl;
+			if (resultadoRemover == 0)
+				cout << "Pokémon removido com sucesso!" << endl;
+			else
+				cout << "Pokémon não encontrado para remoção." << endl;
 		}
-	} while (op != 0);
+	}
+	while (op != 0);
 
 	cout << "Obrigado por utilizar o sistema do Pokédex!" << endl;
 
