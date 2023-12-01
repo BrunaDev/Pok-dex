@@ -1,6 +1,8 @@
-//Integrantes:                           TEMA 01 - POK√âDEX
-//Bruna Magalh√£es
-// Lilyan Aparecida
+                                //TEMA 01 - POK…DEX
+
+//Integrantes:  
+//Bruna Magalh„es
+// Lilyan Oliveira
 // Kawan dos Reis
 
 #include<iostream>
@@ -14,18 +16,18 @@
 using namespace std;
 
 // Definindo os tipos de atributos
-string atributos_base[3] = {"Normal", "Fogo", "√Ågua"};
+string atributos_base[3] = {"Normal", "Fogo", "¡gua"};
 
-// Definindo a estrutura do Pok√©mon
+// Definindo a estrutura do PokÈmon
 typedef struct pokemon
 {
 	int numero;
 	string nome;
-	int tipo; // Deve ser uma das op√ß√µes em atributos_base
+	int tipo; // Deve ser uma das opÁıes em atributos_base
 	string pokebola;
 } Pokemon;
 
-// Definindo a estrutura do n√≥ da √°rvore bin√°ria
+// Definindo a estrutura do nÛ da ·rvore bin·ria
 struct treenode
 {
 	Pokemon info;
@@ -33,7 +35,7 @@ struct treenode
 	treenode* direita;
 };
 
-// Estrutura para armazenar informa√ß√µes sobre o caminho mais curto
+// Estrutura para armazenar informaÁıes sobre o caminho mais curto
 struct CaminhoMaisCurto
 {
     vector<int> caminho;
@@ -43,8 +45,8 @@ struct CaminhoMaisCurto
 
 typedef treenode* treenodeptr;
 
-// Fun√ß√µes
-// Fun√ß√£o para percurso em ordem
+// FunÁıes
+// FunÁ„o para percurso em ordem
 void percursoEmOrdem(treenodeptr raiz)
 {
     if (raiz != NULL)
@@ -55,7 +57,7 @@ void percursoEmOrdem(treenodeptr raiz)
     }
 }
 
-// Fun√ß√£o para percurso p√≥s-ordem
+// FunÁ„o para percurso pÛs-ordem
 void percursoPosOrdem(treenodeptr raiz)
 {
     if (raiz != NULL)
@@ -66,7 +68,7 @@ void percursoPosOrdem(treenodeptr raiz)
     }
 }
 
-// Fun√ß√£o para percurso pr√©-ordem
+// FunÁ„o para percurso prÈ-ordem
 void percursoPreOrdem(treenodeptr raiz)
 {
     if (raiz != NULL)
@@ -77,14 +79,14 @@ void percursoPreOrdem(treenodeptr raiz)
     }
 }
 
-// Fun√ß√£o auxiliar para encontrar o caminho mais curto at√© um Pok√©mon
+// FunÁ„o auxiliar para encontrar o caminho mais curto atÈ um PokÈmon
 CaminhoMaisCurto encontrarCaminhoMaisCurtoAux(treenodeptr raiz, int numeroPokemon, string tipoPercursoAtual)
 {
     CaminhoMaisCurto caminhoMaisCurtoAtual, caminhoMaisCurtoEsquerda, caminhoMaisCurtoDireita;
 
     if (raiz == NULL)
     {
-        // Se chegarmos a uma folha da √°rvore, retornamos um caminho infinito
+        // Se chegarmos a uma folha da ·rvore, retornamos um caminho infinito
         caminhoMaisCurtoAtual.caminho.push_back(-1);
         caminhoMaisCurtoAtual.comprimento = INT_MAX;
         caminhoMaisCurtoAtual.tipoPercurso = tipoPercursoAtual;
@@ -96,24 +98,24 @@ CaminhoMaisCurto encontrarCaminhoMaisCurtoAux(treenodeptr raiz, int numeroPokemo
         caminhoMaisCurtoEsquerda = encontrarCaminhoMaisCurtoAux(raiz->esquerda, numeroPokemon, "Em Ordem");
         caminhoMaisCurtoDireita = encontrarCaminhoMaisCurtoAux(raiz->direita, numeroPokemon, "Em Ordem");
     }
-    else if (tipoPercursoAtual == "P√≥s Ordem")
+    else if (tipoPercursoAtual == "PÛs Ordem")
     {
-        caminhoMaisCurtoEsquerda = encontrarCaminhoMaisCurtoAux(raiz->esquerda, numeroPokemon, "P√≥s Ordem");
-        caminhoMaisCurtoDireita = encontrarCaminhoMaisCurtoAux(raiz->direita, numeroPokemon, "P√≥s Ordem");
+        caminhoMaisCurtoEsquerda = encontrarCaminhoMaisCurtoAux(raiz->esquerda, numeroPokemon, "PÛs Ordem");
+        caminhoMaisCurtoDireita = encontrarCaminhoMaisCurtoAux(raiz->direita, numeroPokemon, "PÛs Ordem");
     }
-    else if (tipoPercursoAtual == "Pr√© Ordem")
+    else if (tipoPercursoAtual == "PrÈ Ordem")
     {
-        caminhoMaisCurtoEsquerda = encontrarCaminhoMaisCurtoAux(raiz->esquerda, numeroPokemon, "Pr√© Ordem");
-        caminhoMaisCurtoDireita = encontrarCaminhoMaisCurtoAux(raiz->direita, numeroPokemon, "Pr√© Ordem");
+        caminhoMaisCurtoEsquerda = encontrarCaminhoMaisCurtoAux(raiz->esquerda, numeroPokemon, "PrÈ Ordem");
+        caminhoMaisCurtoDireita = encontrarCaminhoMaisCurtoAux(raiz->direita, numeroPokemon, "PrÈ Ordem");
     }
 
-    // Escolhemos o caminho mais curto entre as sub√°rvores esquerda e direita
+    // Escolhemos o caminho mais curto entre as sub·rvores esquerda e direita
     if (caminhoMaisCurtoEsquerda.comprimento < caminhoMaisCurtoDireita.comprimento)
         caminhoMaisCurtoAtual = caminhoMaisCurtoEsquerda;
     else
         caminhoMaisCurtoAtual = caminhoMaisCurtoDireita;
 
-    // Verificamos se o caminho atual at√© a raiz √© mais curto
+    // Verificamos se o caminho atual atÈ a raiz È mais curto
     caminhoMaisCurtoAtual.caminho.insert(caminhoMaisCurtoAtual.caminho.begin(), raiz->info.numero);
 
     // Atualizamos o comprimento do caminho atual
@@ -123,7 +125,7 @@ CaminhoMaisCurto encontrarCaminhoMaisCurtoAux(treenodeptr raiz, int numeroPokemo
     return caminhoMaisCurtoAtual;
 }
 
-// Fun√ß√£o para encontrar o caminho mais curto at√© um Pok√©mon na √°rvore
+// FunÁ„o para encontrar o caminho mais curto atÈ um PokÈmon na ·rvore
 CaminhoMaisCurto encontrarCaminhoMaisCurto(treenodeptr raiz, int numeroPokemon)
 {
     // Inicializamos com um caminho infinito
@@ -133,8 +135,8 @@ CaminhoMaisCurto encontrarCaminhoMaisCurto(treenodeptr raiz, int numeroPokemon)
 
     // Encontramos o caminho mais curto para cada tipo de percurso
     CaminhoMaisCurto caminhoMaisCurtoEmOrdem = encontrarCaminhoMaisCurtoAux(raiz, numeroPokemon, "Em Ordem");
-    CaminhoMaisCurto caminhoMaisCurtoPosOrdem = encontrarCaminhoMaisCurtoAux(raiz, numeroPokemon, "P√≥s Ordem");
-    CaminhoMaisCurto caminhoMaisCurtoPreOrdem = encontrarCaminhoMaisCurtoAux(raiz, numeroPokemon, "Pr√© Ordem");
+    CaminhoMaisCurto caminhoMaisCurtoPosOrdem = encontrarCaminhoMaisCurtoAux(raiz, numeroPokemon, "PÛs Ordem");
+    CaminhoMaisCurto caminhoMaisCurtoPreOrdem = encontrarCaminhoMaisCurtoAux(raiz, numeroPokemon, "PrÈ Ordem");
 
     // Comparamos os caminhos e escolhemos o mais curto
     if (caminhoMaisCurtoEmOrdem.comprimento < caminhoMaisCurtoFinal.comprimento)
@@ -147,12 +149,12 @@ CaminhoMaisCurto encontrarCaminhoMaisCurto(treenodeptr raiz, int numeroPokemon)
     return caminhoMaisCurtoFinal;
 }
 
-// Inserir Pok√©mon na √°rvore bin√°ria de busca
+// Inserir PokÈmon na ·rvore bin·ria de busca
 void inserir_pokemon(treenodeptr &raiz, Pokemon p)
 {
 	if (raiz == NULL)
 	{
-		// Cria um novo n√≥ se a raiz for nula
+		// Cria um novo nÛ se a raiz for nula
 		raiz = new treenode;
 		raiz->info = p;
 		raiz->esquerda = NULL;
@@ -160,8 +162,8 @@ void inserir_pokemon(treenodeptr &raiz, Pokemon p)
 	}
 	else
 	{
-		// Navega para a esquerda se o nome do Pok√©mon for menor que o nome na raiz,
-		// caso contr√°rio, navega para a direita.
+		// Navega para a esquerda se o nome do PokÈmon for menor que o nome na raiz,
+		// caso contr·rio, navega para a direita.
 		if (p.nome < raiz->info.nome)
 		{
 			inserir_pokemon(raiz->esquerda, p);
@@ -173,14 +175,14 @@ void inserir_pokemon(treenodeptr &raiz, Pokemon p)
 	}
 }
 
-// Encontrar o menor n√≥ em uma sub√°rvore
+// Encontrar o menor nÛ em uma sub·rvore
 treenodeptr tMenor(treenodeptr &raiz)
 {
 	treenodeptr t;
 	t = raiz;
 	if (t->esquerda == NULL)
 	{
-		// Encontrou o menor n√≥, atualiza a raiz e retorna o n√≥ encontrado
+		// Encontrou o menor nÛ, atualiza a raiz e retorna o nÛ encontrado
 		raiz = raiz->direita;
 		return t;
 	}
@@ -188,12 +190,12 @@ treenodeptr tMenor(treenodeptr &raiz)
 		return tMenor(raiz->esquerda);
 }
 
-// Remover Pok√©mon da √°rvore por pokebola
+// Remover PokÈmon da ·rvore por pokebola
 int tRemovePorPokebola(treenodeptr &raiz, string pokebola)
 {
 	treenodeptr p;
 	if (raiz == NULL)
-		return 1; // Retorna 1 se a √°rvore estiver vazia
+		return 1; // Retorna 1 se a ·rvore estiver vazia
 
 	if (pokebola == raiz->info.pokebola)
 	{
@@ -208,7 +210,7 @@ int tRemovePorPokebola(treenodeptr &raiz, string pokebola)
 			raiz->info = p->info;
 		}
 		delete p;
-		return 0; // Retorna 0 indicando que a remo√ß√£o foi bem-sucedida
+		return 0; // Retorna 0 indicando que a remoÁ„o foi bem-sucedida
 	}
 	else if (pokebola < raiz->info.pokebola)
 		return tRemovePorPokebola(raiz->esquerda, pokebola);
@@ -216,20 +218,20 @@ int tRemovePorPokebola(treenodeptr &raiz, string pokebola)
 		return tRemovePorPokebola(raiz->direita, pokebola);
 }
 
-// Destruir a √°rvore liberando a mem√≥ria
+// Destruir a ·rvore liberando a memÛria
 void tDestruir(treenodeptr &raiz)
 {
 	if (raiz != NULL)
 	{
-		// Libera recursivamente a mem√≥ria dos n√≥s da √°rvore
+		// Libera recursivamente a memÛria dos nÛs da ·rvore
 		tDestruir(raiz->esquerda);
 		tDestruir(raiz->direita);
 		delete raiz;
 	}
-	raiz = NULL; // Atualiza a raiz para NULL ap√≥s destruir a √°rvore
+	raiz = NULL; // Atualiza a raiz para NULL apÛs destruir a ·rvore
 }
 
-// Procurar um Pok√©mon na √°rvore por nome
+// Procurar um PokÈmon na ·rvore por nome
 treenodeptr tPesq(treenodeptr &raiz, string nome)
 {
 	if (raiz == NULL || raiz->info.nome == nome)
@@ -241,7 +243,7 @@ treenodeptr tPesq(treenodeptr &raiz, string nome)
 	return tPesq(raiz->direita, nome);
 }
 
-// Procurar um Pok√©mon na √°rvore por nome
+// Procurar um PokÈmon na ·rvore por nome
 int Contabiliza_Tipo(treenodeptr raiz, int tipoDesejado)
 {
 	int cont = 0;
@@ -268,14 +270,14 @@ int Contabiliza_Tipo(treenodeptr raiz, int tipoDesejado)
 	return cont;
 }
 
-// Implementa√ß√£o da fun√ß√£o para mostrar em ordem alfab√©tica dos tipos
+// ImplementaÁ„o da funÁ„o para mostrar em ordem alfabÈtica dos tipos
 void mostrarPorTipo(treenodeptr raiz, int tipoDesejado)
 {
 	if (raiz != NULL)
 	{
 		mostrarPorTipo(raiz->esquerda, tipoDesejado);
 
-		// Exibe os Pok√©mon apenas se forem do tipo desejado
+		// Exibe os PokÈmon apenas se forem do tipo desejado
 		if (raiz->info.tipo == tipoDesejado)
 		{
 			cout << "Nome: " << raiz->info.nome << ", Tipo: " << atributos_base[tipoDesejado - 1] << ", Numero: " << raiz->info.numero << ", Pokebola: " << raiz->info.pokebola << endl;
@@ -286,7 +288,7 @@ void mostrarPorTipo(treenodeptr raiz, int tipoDesejado)
 }
 
 
-// Implementa√ß√£o da fun√ß√£o para mostrar por pokebola
+// ImplementaÁ„o da funÁ„o para mostrar por pokebola
 void mostrarPorPokebola(treenodeptr raiz, string pokebolaDesejada)
 {
 	if (raiz != NULL)
@@ -306,95 +308,107 @@ int main()
 
 	treenodeptr raiz = NULL;
 
-	cout << "Bem vindo ao sistema do Pok√©dex";
+	cout << "Bem vindo ao sistema do PokÈdex";
 
 	int op = 8;
 
 	do
 	{
-		cout << "\n\t\tMenu\n\t1> Cadastrar novo Pok√©mon\n\t2> Procurar Pok√©mon\n\t3> Mostrar em ordem alfab√©tica\n\t4> Contar Pok√©mons\n\t5> Pok√©mons por pokebola\n\t6> Remover Pok√©mon\n\t7> Percurso mais r√°pido\n\n\t0> Sair\n";
+		cout << "\n\t\tMenu\n\t1> Cadastrar novo PokÈmon\n\t2> Procurar PokÈmon\n\t3> Mostrar em ordem alfabÈtica\n\t4> Contar PokÈmons\n\t5> PokÈmons por pokebola\n\t6> Remover PokÈmon\n\t7> Percurso mais r·pido\n\n\t0> Sair\n";
 
 		do
 		{
-			cout << "Entre com a op√ß√£o desejada: ";
+			cout << "Entre com a opÁ„o desejada: ";
 			cin >> op;
 			if (op < 0 || op > 7)
-				cout << "Op√ß√£o inv√°lida!" << endl;
+				cout << "OpÁ„o inv·lida!" << endl;
 		}
 		while (op < 0 || op > 7);
-
+			
+		
 		if (op == 1)
-		{
-			// Cadastrar novo Pok√©mon
-			cout << "\n\tCadastro de Pok√©mon" << endl;
+        {
+            // Cadastrar novo PokÈmon
+            cout << "\n\tCadastro de PokÈmon" << endl;
 
-			Pokemon novoPokemon;
+            Pokemon novoPokemon;
 
-			// Solicita informa√ß√µes do novo Pok√©mon ao usu√°rio
-			cin.ignore();
-			cout << "Informe o nome do Pok√©mon: ";
-			getline(cin, novoPokemon.nome);
-			cout << "Informe o tipo (1-Normal; 2-Fogo; 3-√Ågua): ";
-			cin >> novoPokemon.tipo;
-			cout << "Informe o n√∫mero de identifica√ß√£o: ";
-			cin >> novoPokemon.numero;
-			cin.ignore();
-			cout << "Informe a pok√©bola: ";
-			getline(cin, novoPokemon.pokebola);
+            cin.ignore();
+            cout << "Informe o nome do PokÈmon: ";
+            getline(cin, novoPokemon.nome);
 
-			// Insere o novo Pok√©mon na √°rvore
-			inserir_pokemon(raiz, novoPokemon);
-		}
-		else if (op == 2)
-		{
-			// Procurar Pok√©mon por nome
-			cout << "\n\tProcurar Pok√©mon (por nome)" << endl;
+            bool tipoValido = false;
+            do {
+                cout << "Informe o tipo (1-Normal; 2-Fogo; 3-¡gua): ";
+                cin >> novoPokemon.tipo;
 
-			string nomePokemon;
-			cout << "Informe o nome do Pok√©mon: ";
-			cin >> nomePokemon;
+                if (novoPokemon.tipo >= 1 && novoPokemon.tipo <= 3) {
+                    tipoValido = true;
+                } else {
+                    cout << "Tipo inv·lido! Por favor, insira um tipo v·lido (1 a 3)." << endl;
+                }
+            } while (!tipoValido);
 
-			// Procura o Pok√©mon na √°rvore e exibe uma mensagem adequada
-			treenodeptr encontrado = tPesq(raiz, nomePokemon);
+            cout << "Informe o n˙mero de identificaÁ„o: ";
+            cin >> novoPokemon.numero;
+            cin.ignore();
+            cout << "Informe a pokÈbola: ";
+            getline(cin, novoPokemon.pokebola);
 
-			if (encontrado == NULL)
-				cout << "Pok√©mon n√£o encontrado!" << endl;
-			else
-				cout << "Pok√©mon encontrado!" << endl;
-		}
+            inserir_pokemon(raiz, novoPokemon);
+        }
+        else if (op == 2)
+        {
+            // Procurar PokÈmon por nome
+            cout << "\n\tProcurar PokÈmon (por nome)" << endl;
+
+            cin.ignore(); // Limpa o buffer do teclado
+            string nomePokemon;
+            cout << "Informe o nome do PokÈmon: ";
+            getline(cin, nomePokemon);
+
+            // Procura o PokÈmon na ·rvore e exibe uma mensagem adequada
+            treenodeptr encontrado = tPesq(raiz, nomePokemon);
+
+            if (encontrado == NULL)
+                cout << "PokÈmon n„o encontrado!" << endl;
+            else
+                cout << "PokÈmon encontrado!" << endl;
+        }
+			
 		else if (op == 3)
 		{
-			// Ordenar e imprimir a estrutura por ordem alfab√©tica dos tipos
-			cout << "\n\tOrdenar e imprimir a estrutura por ordem alfab√©tica dos tipos" << endl;
+			// Ordenar e imprimir a estrutura por ordem alfabÈtica dos tipos
+			cout << "\n\tOrdenar e imprimir a estrutura por ordem alfabÈtica dos tipos" << endl;
 
 
 
 			for (int i = 3; i >= 1; --i)  
 			{
-				cout << "\nPok√©mons do tipo " << atributos_base[i - 1] << ":" << endl;
+				cout << "\nPokÈmons do tipo " << atributos_base[i - 1] << ":" << endl;
 				mostrarPorTipo(raiz, i);
 			}
 		}
 		else if (op == 4)
 		{
-			// Contar quantos Pok√©mon tem de determinado tipo
-			cout << "\n\tContar quantos Pok√©mon tem de determinado tipo" << endl;
+			// Contar quantos PokÈmon tem de determinado tipo
+			cout << "\n\tContar quantos PokÈmon tem de determinado tipo" << endl;
 
 			int tipoDesejado;
-			cout << "Tipo desejado (1-Normal; 2-Fogo; 3-√Ågua): ";
+			cout << "Tipo desejado (1-Normal; 2-Fogo; 3-¡gua): ";
 			cin >> tipoDesejado;
 
 			int encontrado = Contabiliza_Tipo(raiz, tipoDesejado);
 
 			if (encontrado == 0)
-				cout << "N√£o existe esse tipo de pok√©mon cadastrado!" << endl;
+				cout << "N„o existe esse tipo de pokÈmon cadastrado!" << endl;
 			else
 			{
 				if(encontrado > 1)
-					cout << "Tem " << encontrado << " pok√©mons" << endl;
+					cout << "Tem " << encontrado << " pokÈmons" << endl;
 				else
 				{
-					cout << "Tem " << encontrado << " pok√©mon" << endl;
+					cout << "Tem " << encontrado << " pokÈmon" << endl;
 				}
 			}
 
@@ -402,39 +416,39 @@ int main()
 		else if (op == 5)
 		{
 			//Separar por pokebola
-			cout << "\n\tPok√©mons por pokebola" << endl;
+			cout << "\n\tPokÈmons por pokebola" << endl;
 
 			string pokebolaDesejada;
 			cout << "Informe a pokebola desejada: ";
 			cin >> pokebolaDesejada;
 
-			cout << "\nPok√©mons na pokebola " << pokebolaDesejada << ":" << endl;
+			cout << "\nPokÈmons na pokebola " << pokebolaDesejada << ":" << endl;
 			mostrarPorPokebola(raiz, pokebolaDesejada);
 		}
 		else if (op == 6)
 		{
-			// Remover Pok√©mon por pokebola
-			cout << "\n\tRemover Pok√©mon por pokebola" << endl;
+			// Remover PokÈmon por pokebola
+			cout << "\n\tRemover PokÈmon por pokebola" << endl;
 
 			string pokebolaRemover;
-			cout << "Informe a pokebola do pok√©mon a ser removido: ";
+			cout << "Informe a pokebola do pokÈmon a ser removido: ";
 			cin >> pokebolaRemover;
 
-			// Tenta remover o Pok√©mon e exibe uma mensagem adequada
+			// Tenta remover o PokÈmon e exibe uma mensagem adequada
 			int resultadoRemover = tRemovePorPokebola(raiz, pokebolaRemover);
 
 			if (resultadoRemover == 0)
-				cout << "Pok√©mon removido com sucesso!" << endl;
+				cout << "PokÈmon removido com sucesso!" << endl;
 			else
-				cout << "Pok√©mon n√£o encontrado para remo√ß√£o." << endl;
+				cout << "PokÈmon n„o encontrado para remoÁ„o." << endl;
 		}
 		else if (op == 7)
 		{
-    		// Encontrar caminho mais curto at√© um Pok√©mon
-    cout << "\n\tEncontrar Caminho Mais Curto at√© um Pok√©mon\n";
+    		// Encontrar caminho mais curto atÈ um PokÈmon
+    cout << "\n\tEncontrar Caminho Mais Curto atÈ um PokÈmon\n";
 
     int numeroPokemon;
-    cout << "Informe o n√∫mero do Pok√©mon desejado: ";
+    cout << "Informe o n˙mero do PokÈmon desejado: ";
     cin >> numeroPokemon;
 
     CaminhoMaisCurto caminhoMaisCurto = encontrarCaminhoMaisCurto(raiz, numeroPokemon);
@@ -452,14 +466,14 @@ int main()
     }
     else
     {
-        cout << "Pok√©mon n√£o encontrado na √°rvore." << endl;
+        cout << "PokÈmon n„o encontrado na ·rvore." << endl;
     }
 		}
 	}while (op != 0);
 
-	cout << "Obrigado por utilizar o sistema do Pok√©dex!" << endl;
+	cout << "Obrigado por utilizar o sistema do PokÈdex!" << endl;
 
-	// Libera a mem√≥ria da √°rvore antes de encerrar o programa
+	// Libera a memÛria da ·rvore antes de encerrar o programa
 	tDestruir(raiz);
 
 	return 0;
